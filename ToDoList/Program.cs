@@ -35,12 +35,10 @@ using ToDoList;
 
 class Program
 {
-    static void Main()
+    public static void Main()
     {
         TaskManager taskManager = new TaskManager();
-        Message.GenerateMessage("********************************", "Green");
-        Message.GenerateMessage("**  WELCOME TO THE TODO-LIST  **", "Green");
-        Message.GenerateMessage("********************************", "Green");
+        Message.GenerateMenuHeader("*************  WELCOME TO THE TODO-LIST  *************", "Green");
         UserInterface ui = new UserInterface(taskManager);
         ui.ShowMainMenu();
     }

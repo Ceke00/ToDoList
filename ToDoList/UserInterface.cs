@@ -27,19 +27,19 @@ namespace ToDoList
             {
                 try
                 {
-                    GenerateMenuHeader("*********  MAIN MENU  **********");
+                    Message.GenerateMenuHeader("********************  MAIN MENU  *********************", "Yellow");
                     Console.Write("You have ");
                     Message.GenerateMessage(taskManager.Tasks.Count(t => !t.IsDone).ToString(), "Red", true);
                     Console.Write(" tasks todo and ");
                     Message.GenerateMessage(taskManager.Tasks.Count(t => t.IsDone).ToString(), "Green", true);
                     Console.WriteLine(" tasks are done.");
-                    Message.GenerateMessage("--------------------------------------------", "Yellow");
+                    Message.GenerateDivider("-", "Yellow", 54);
                     Message.GenerateMessage("Pick an option:", "Cyan");
                     Console.WriteLine("(1) Show Task List (by date or category)");
                     Console.WriteLine("(2) Add New Task");
                     Console.WriteLine("(3) Edit Task (update, mark as done/not done, remove)");
                     Console.WriteLine("(4) Save and quit");
-                    Message.GenerateMessage("--------------------------------------------", "Yellow");
+                    Message.GenerateDivider("-", "Yellow", 54);
 
                     string choice = Console.ReadLine().Trim();
 
@@ -75,9 +75,7 @@ namespace ToDoList
                 {
                     int choice = GetIntInput("Show tasks by (1) Date or (2) Category (or 0 for Main Menu)? ", 2);
                     if (choice == 0) break;
-                    Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
-                    Message.GenerateMessage("TASK TITLE".PadRight(20) + "DUE DATE".PadRight(20) + "STATUS".PadRight(20) + "CATEGORY", "Cyan");
-                    Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
+                    Message.GenerateTableHeader("TASK TITLE".PadRight(20) + "DUE DATE".PadRight(20) + "STATUS".PadRight(20) + "CATEGORY");
 
                     if (choice == 1)
                     {
@@ -86,7 +84,7 @@ namespace ToDoList
                         {
                             Console.WriteLine(task);
                         }
-                        Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
+                        Message.GenerateDivider("-", "Cyan", 86);
                         break;
                     }
                     else if (choice == 2)
@@ -96,7 +94,7 @@ namespace ToDoList
                         {
                             Console.WriteLine(task);
                         }
-                        Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
+                        Message.GenerateDivider("-", "Cyan", 86);
                         break;
                     }
                 }
@@ -107,7 +105,7 @@ namespace ToDoList
         //Adding new tasks
         private void AddNewTask()
         {
-            GenerateMenuHeader("********  ADD NEW TASK  ********");
+            Message.GenerateMenuHeader("*******************  ADD NEW TASK  *******************", "Red");
             while (true)
             {
                 try
@@ -130,18 +128,15 @@ namespace ToDoList
         //Editing tasks
         private void EditTask()
         {
-            GenerateMenuHeader("*********  EDIT TASK  **********");
-            Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
-            Message.GenerateMessage("NR".PadRight(10) + "TASK TITLE".PadRight(20) + "DUE DATE".PadRight(20) + "STATUS".PadRight(20) + "CATEGORY", "Cyan");
-            Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
+            Message.GenerateMenuHeader("********************  EDIT TASK  *********************", "Red");
+            Message.GenerateTableHeader("NR".PadRight(11) + "TASK TITLE".PadRight(20) + "DUE DATE".PadRight(20) + "STATUS".PadRight(20) + "CATEGORY");
 
             //Numbered tasks
             for (int i = 0; i < taskManager.Tasks.Count; i++)
             {
                 Console.WriteLine((i + 1) + ".".PadRight(10) + taskManager.Tasks[i]);
             }
-            Message.GenerateMessage("-------------------------------------------------------------------------------------", "Cyan");
-
+            Message.GenerateDivider("-", "Cyan", 86);
             while (true)
             {
                 try
@@ -152,8 +147,9 @@ namespace ToDoList
 
                     if (index >= 0 && index < taskManager.Tasks.Count)
                     {
+                        Message.GenerateDivider("-", "Cyan", 54);
                         int choice = GetIntInput("What do you want to do? \n(0) Back to Main Menu\n(1) Update Task \n(2) Mark as Done \n(3) Mark as Not Done \n(4) Remove Task \nEnter option: ", 4);
-
+                        Message.GenerateDivider("-", "Cyan", 54);
                         switch (choice)
                         {
                             //Showing current data before input
@@ -200,12 +196,7 @@ namespace ToDoList
             // Implement file saving logic here
             Console.WriteLine("Tasks saved. Exiting program.");
         }
-        private void GenerateMenuHeader(string title)
-        {
-            Message.GenerateMessage("********************************", "Yellow");
-            Message.GenerateMessage(title, "Yellow");
-            Message.GenerateMessage("********************************", "Yellow");
-        }
+
 
         //Validate int input from user, return correct int
         private static int GetIntInput(string prompt, int nrOfChoices)
@@ -240,7 +231,6 @@ namespace ToDoList
                 }
             }
         }
-
 
         //Validate DateTime input, return a correct date
         private static DateTime GetDateInput(string prompt)

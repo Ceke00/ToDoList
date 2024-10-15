@@ -23,5 +23,31 @@ namespace ToDoList
             else Console.WriteLine(message);
             Console.ResetColor();
         }
+
+        //Generating menuu header with specific color
+        public static void GenerateMenuHeader(string title, string color)
+        {
+            GenerateDivider("*", color, 54);
+            GenerateMessage(title, color);
+            GenerateDivider("*", color, 54);
+        }
+
+        //Generating divider with specific lenght and color
+        public static void GenerateDivider(string sign, string color, int lengthString)
+        {
+            for (int i = 0; i < lengthString - 1; i++)
+            {
+                GenerateMessage(sign, color, true);
+            }
+            GenerateMessage(sign, color);
+        }
+
+        //Generating table header
+        public static void GenerateTableHeader(string header)
+        {
+            GenerateDivider("-", "Cyan", 86);
+            GenerateMessage(header, "Cyan");
+            GenerateDivider("-", "Cyan", 86);
+        }
     }
 }
