@@ -26,11 +26,12 @@ namespace ToDoList
         }
 
         //Editing task properties
-        public void EditTask(int index, string newTitle, DateTime newDueDate, string newCategory)
+        public void EditTask(int index, string newTitle, DateTime newDueDate, string newCategory, Priority newPriority)
         {
             Tasks[index].Title = newTitle;
             Tasks[index].DueDate = newDueDate;
             Tasks[index].Category = newCategory;
+            Tasks[index].Priority = newPriority;
         }
 
         //Removes tasks
@@ -61,6 +62,12 @@ namespace ToDoList
         public List<Task> GetTasksByCategory()
         {
             return Tasks.OrderBy(t => t.Category).ToList();
+        }
+
+        //Ordering tasks by priority
+        public List<Task> GetTasksByPriority()
+        {
+            return Tasks.OrderBy(t => t.Priority).ToList();
         }
     }
 }

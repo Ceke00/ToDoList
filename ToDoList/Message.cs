@@ -18,6 +18,7 @@ namespace ToDoList
                 case "Yellow": Console.ForegroundColor = ConsoleColor.Yellow; break;
                 case "Cyan": Console.ForegroundColor = ConsoleColor.Cyan; break;
                 case "Blue": Console.ForegroundColor = ConsoleColor.Blue; break;
+                case "DarkGreen": Console.ForegroundColor = ConsoleColor.DarkGreen; break;
             }
             if (sameLine) Console.Write(message);
             else Console.WriteLine(message);
@@ -45,9 +46,12 @@ namespace ToDoList
         //Generating table header
         public static void GenerateTableHeader(string header)
         {
-            GenerateDivider("-", "Cyan", 86);
+            GenerateDivider("*", "Cyan", 100);
+            GenerateMessage("YELLOW = Do Today!!", "Yellow", true);
+            GenerateMessage("\tGREEN = Done!", "DarkGreen");
+            GenerateDivider("-", "Cyan", 100);
             GenerateMessage(header, "Cyan");
-            GenerateDivider("-", "Cyan", 86);
+            GenerateDivider("-", "Cyan", 100);
         }
     }
 }
