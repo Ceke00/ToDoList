@@ -36,12 +36,12 @@ namespace ToDoList
                 }
                 else
                 {
-                    Message.GenerateMessage("File not found.", "Red");
+                    Message.GenerateMessage("No previous saved tasks to load.", "Red");
                 }
             }
             catch (Exception e)
             {
-                Message.GenerateMessage("Could not load tasks: " + e.Message, "Red");
+                Message.GenerateMessage("Could not load tasks from file: " + e.Message, "Red");
             }
         }
 
